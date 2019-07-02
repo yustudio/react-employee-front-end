@@ -61,9 +61,8 @@ export class EmployeeForm extends Component {
         if (this.state.employee.firstName
             && this.state.employee.lastName
             && this.state.employee.role
-            && (this.state.employee.hireDate <= new Date())
-            && this.state.quote1
-            && this.state.quote2) {
+            && (new Date(this.state.employee.hireDate) < new Date())) {
+
             let request = null;
 
             if (this.props && this.props.employees ) {
@@ -71,8 +70,8 @@ export class EmployeeForm extends Component {
                     ...this.state.employee,
                     "hireDate": this.state.employee.hireDate,
                     "role": this.state.employee.role,
-                    "quote1": this.state.quote1,
-                    "quote2": this.state.quote2,
+                    "quote1": this.state.employee.quote1,
+                    "quote2": this.state.employee.quote2,
                 })
             } else {
                 request = axios.post('http://localhost:5000/api/v1/posts/', {
@@ -87,6 +86,8 @@ export class EmployeeForm extends Component {
             request.then(res => {             
                 this.props.history.push('/')
             });
+        } else  {
+            alert("Error with input fields");
         }
     }
 
