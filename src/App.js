@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Employees from './components/Employees';
@@ -35,13 +35,17 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
         <div className="App">
-          <div className="employee__button--add">
-            <Link to="/employee/add">Add Employee</Link>
+          <div className="employee__button">
+            <Link
+              className="employee__button--add"
+              to="/employee/add"
+              >
+              Add Employee
+            </Link>
           </div>
           <div className="employeeform">
-            <Route exact 
+            <Route exact
               path="/" 
               render = {props => (
               <Employees
@@ -49,7 +53,7 @@ class App extends Component {
                 employees = {this.state.employees}
                 delEmployee = {this.delEmployee.bind(this)} 
               />
-            )} />
+              )} />
             <Route 
               path="/employee/add" 
               render = {props => 
@@ -70,7 +74,6 @@ class App extends Component {
             />
           </div>
         </div>
-      </Router>
     );
   }
 }

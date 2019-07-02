@@ -4,6 +4,7 @@ import 'react-day-picker/lib/style.css'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import axios from 'axios';
+import history from "../history";
 
 export class EmployeeForm extends Component {
     constructor() {
@@ -41,11 +42,6 @@ export class EmployeeForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let e = nextProps.employees 
-                  ? nextProps.employees.filter(e => 
-                      e.id === this.props.match.params.id
-                    )[0]
-                  : {}
         this.setState({
             employee: 
                 nextProps.employees 
@@ -83,8 +79,8 @@ export class EmployeeForm extends Component {
                 })
             }
            
-            request.then(res => {             
-                this.props.history.push('/')
+            request.then(res => {    
+                history.push('/')
             });
         } else  {
             alert("Error with input fields");
@@ -122,8 +118,6 @@ export class EmployeeForm extends Component {
         let options = [
           'CEO', 'VP', 'MANAGER', 'LACKEY'
         ];
-
-        let today = new Date();
 
         return (
             <form 

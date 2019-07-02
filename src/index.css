@@ -105,3 +105,11 @@ code {
 .Dropdown-control {
   padding: 3px 52px 3px 10px !important;
 }
+
+.employee__button {
+  margin-top: 20px;
+}
+
+.employee__button--add {
+  text-decoration: none;
+}
